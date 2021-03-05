@@ -1,4 +1,12 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+# LaTeX Files
+*.aux
+*.blg
+*.nav
+*.pdf  
+*.synctex.gz
+*.toc
+*.bbl 
+*.log
+*.out
+*.snm
+
