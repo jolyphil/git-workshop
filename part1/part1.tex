@@ -1,0 +1,107 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREAMBLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[handout]{beamer}
+%\documentclass{beamer}
+
+%------------------------------------------------------------------
+% Presentation Settings
+%------------------------------------------------------------------
+
+\mode<presentation>
+{
+	\usetheme{Singapore}      % or Boadilla, Singapore, ...
+	\usecolortheme{default} % or albatross, beaver, crane, ...
+	\usefonttheme{default}  % or serif, structurebold, ...
+	\setbeamertemplate{navigation symbols}{}
+	\setbeamertemplate{caption}[numbered]
+	\setbeamertemplate{itemize items}[circle]
+	\setbeamertemplate{itemize subitem}[triangle]
+	\setbeamertemplate{enumerate items}[default]
+	\setbeamerfont{caption}{size=\tiny}
+	\setbeamercolor{alerted text}{fg=blue}
+}
+
+%------------------------------------------------------------------
+% Packages
+%------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage[natbibapa]{apacite}
+\usepackage{appendixnumberbeamer}
+\usepackage[english]{babel}
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage[utf8x]{inputenc}
+\usepackage{pdfpages}
+\usepackage{subcaption}
+\usepackage{verbatim}
+\usepackage{xcolor}
+
+%------------------------------------------------------------------
+% Set up
+%------------------------------------------------------------------
+
+% Add section titles
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=false,rounded=false]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+% Reduce references font size
+
+\renewcommand*{\bibfont}{\scriptsize}
+
+%------------------------------------------------------------------
+% Title page settings
+%------------------------------------------------------------------
+
+\title{First wave of the RAPID-COVID Panel}
+
+\subtitle{Early findings and observations}
+
+\author[Faas, Joly, \& Schieferdecker]{Thorsten Faas, Philippe Joly, \& David Schieferdecker}
+\institute[FU-Berlin]{Freie Universität Berlin}
+
+\date{February 12, 2021}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%------------------------------------------------------------------
+% Title Page
+%------------------------------------------------------------------
+\begin{frame}
+\titlepage
+\end{frame}
+
+%%------------------------------------------------------------------
+%% Introduction
+%%------------------------------------------------------------------
+
+\section{Introduction}
+\begin{frame}{RAPID-COVID}{Receiving and Accepting Public Information Despite Polarization \newline Key to Overcoming COVID-19}
+\begin{itemize}
+	\uncover<1->{\item Project at the intersection of political communication, political psychology, and political culture studies}
+	\uncover<2->{\item Topics: subjective and objective knowledge, attitudes towards containment measures, and political polarization}
+	\uncover<3->{\item Current Stand: }
+	\begin{itemize}
+		\uncover<4->{\item Panel-W1 completed in December\uncover<3->}
+		\uncover<5->{\item Panel-W2 + control cross-section launching in one week. }
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+\end{document}
