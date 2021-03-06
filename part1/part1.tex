@@ -63,7 +63,7 @@
 % Title page settings
 %------------------------------------------------------------------
 
-\title{Workshop: Introduction to Git and GitHub}
+\title[Git/GitHub Workshop: Part 1]{Workshop: Introduction to Git and GitHub}
 
 \subtitle{Part 1: Getting started}
 
@@ -98,6 +98,8 @@
 %\end{columns}
 
 %%------------------------------------------------------------------
+
+\section{Introduction}
 
 \begin{frame}{Objectives}
   \begin{columns}
@@ -220,6 +222,57 @@ www.phdcomics.com}
   \end{column}
 \end{columns}
 
+\end{frame}
+
+\section{What is version control?}
+
+\begin{frame}{Local version control}
+  \begin{figure}
+	  \includegraphics[width=0.6\textwidth]{figures/fig1_local.png}
+	  \caption{Local version control \textit{Source}: Chacon \& Straub (2021), Figure 1.}
+  \end{figure} 
+\end{frame}
+
+\begin{frame}{Centralized version control}
+  \begin{figure}
+	  \includegraphics[width=0.7\textwidth]{figures/fig2_cvcs.png}
+	  \caption{Centralized version control system (CVCS) \textit{Source}: Chacon \& Straub (2021), Figure 2.}
+  \end{figure} 
+\end{frame}
+
+\begin{frame}{Distributed Version Control}
+  \begin{figure}
+	  \includegraphics[width=0.5\textwidth]{figures/fig3_dvcs.png}
+	  \caption{Distributed version control system (DVCS) \textit{Source}: Chacon \& Straub (2021), Figure 3.}
+  \end{figure} 
+\end{frame}
+
+
+\section{What is Git?}
+
+\begin{frame}{Snapshots}
+  \begin{figure}
+	  \includegraphics[width=0.8\textwidth]{figures/fig5_snapshots.png}
+	  \caption{Git stores the version history of a project as a stream of snapshots over time. \textit{Source}: Chacon \& Straub (2021), Figure 5.}
+  \end{figure} 
+\end{frame}
+
+\begin{frame}{The Three States}
+  \begin{figure}
+	  \includegraphics[width=0.8\textwidth]{figures/git_states.pdf}
+	  \caption{In a git repository, a file can reside in three states: modified, staged, and committed}
+  \end{figure} 
+\end{frame}
+
+\begin{frame}{The Git Workflow}
+  \begin{exampleblock}{The basic Git workflow goes something like this:}
+    \begin{enumerate}
+      \item You \textbf{modify} files in your working directory.
+      \item You selectively \textbf{stage} just those changes you want to be part of your next commit.
+      \item You do a \textbf{commit}, which takes the files as they are in the staging area and stores that snapshot permanently to your Git directory.
+    \end{enumerate}
+  \end{exampleblock}
+  {\scriptsize Adapted from Chacon \& Straub (2021), Section 1.3.}
 \end{frame}
 
 \end{document}
