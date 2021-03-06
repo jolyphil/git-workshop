@@ -1,12 +1,13 @@
 # LaTeX Files
 *.aux
 *.blg
-*.nav
-*.pdf  
+*.nav  
 *.synctex.gz
 *.toc
 *.bbl 
 *.log
 *.out
 *.snm
+*eps-converted-to.pdf
 
+#part2/part2.pdf

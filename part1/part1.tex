@@ -99,6 +99,25 @@
 
 %%------------------------------------------------------------------
 
+\begin{frame}{Reference}
+  \begin{columns}
+  
+    \begin{column}{0.5\textwidth}
+    \begin{itemize}
+      \item This workshop draws extensively on Scott Chacon and Ben Straub (2021), \href{https://git-scm.com/book/en/v2}{\textit{ProGit}}, Version 2.1.295, 2021-02-26. 
+      \item Like the book, this workshop carries the CC BY-NC-SA 3.0 license. 
+    \end{itemize}
+		\end{column}
+		
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+	      \includegraphics[width=0.5\textwidth]{figures/progit_cover.png}
+	      \caption{}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
 \section{Introduction}
 
 \begin{frame}{Objectives}
@@ -121,25 +140,6 @@
       \end{figure}
       \begin{figure}
 	      \includegraphics[width=0.5\textwidth]{figures/github_logo.png}
-	      \caption{}
-      \end{figure}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}{Reference}
-  \begin{columns}
-  
-    \begin{column}{0.5\textwidth}
-    \begin{itemize}
-      \item This workshop builds on Scott Chacon and Ben Straub (2021), \textit{Pro Git}, Version 2.1.295, 2021-02-26. 
-      \item Like the book, this workshop carries the CC BY-NC-SA 3.0 license. 
-    \end{itemize}
-		\end{column}
-		
-    \begin{column}{0.5\textwidth}
-      \begin{figure}
-	      \includegraphics[width=0.5\textwidth]{figures/progit_cover.png}
 	      \caption{}
       \end{figure}
     \end{column}
@@ -273,6 +273,95 @@ www.phdcomics.com}
     \end{enumerate}
   \end{exampleblock}
   {\scriptsize Adapted from Chacon \& Straub (2021), Section 1.3.}
+\end{frame}
+
+\section{Git Setup}
+
+\begin{frame}{Why using Git from the command line?}
+  \begin{itemize}
+    \item The only way to really learn the mechanics of Git. 
+    \item Access to \textbf{all} Git functions.
+    \item Easier to get help
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Your identity}
+  \begin{exampleblock}{Set your global user name and email address}
+    \begin{semiverbatim}
+      \item \$ git config --global user.name "John Doe"
+      \item \$ git config --global user.email johndoe@example.com
+    \end{semiverbatim}
+  \end{exampleblock}
+  \textit{Note}: Your email address is an integral part of your version history in Git. If you make your repository available, everyone will see your email address. Choose wisely!
+\end{frame}
+
+\begin{frame}{Other settings}
+  By default, Git uses \textbf{Vim} as editor for certain operations. If you have installed \textbf{atom}, I would recommend using it as your default editor instead.  
+  \begin{exampleblock}{Change your default editor}
+    \begin{semiverbatim}
+      \item \$ git config --global core.editor "atom --wait"
+    \end{semiverbatim}
+  \end{exampleblock}
+  The default branch name on Git is \texttt{master}. I would recommend changing the default name to \texttt{main} (only possible from \texttt{git --version} 2.28 onwards). 
+  \begin{exampleblock}{Change your default branch name}
+    \begin{semiverbatim}
+      \item \$ git config --global init.defaultBranch main
+    \end{semiverbatim}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Viewing all your settings}
+  \begin{exampleblock}{}
+    \begin{semiverbatim}
+      \item \$ git config --list
+    \end{semiverbatim}
+  \end{exampleblock}
+  \begin{exampleblock}{}
+    \begin{semiverbatim}
+      \item user.email=philippe.joly@posteo.net
+      \item user.name=Philippe Joly
+      \item init.defaultbranch=main
+      \item core.editor=atom --wait
+    \end{semiverbatim}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Getting help}
+  \begin{exampleblock}{Three equivalent ways to get the comprehensive manual page}
+    \begin{semiverbatim}  
+      \item \$ git help <verb>
+      \item \$ git <verb> --help
+      \item \$ man git-<verb>
+    \end{semiverbatim}
+  \end{exampleblock}
+  \begin{exampleblock}{More concise “help” output }
+    \begin{semiverbatim}  
+      \item \$ git <verb> -h
+    \end{semiverbatim}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{What we have learned in this part of the workshop}
+  \begin{itemize}
+    \item The concepts behind a distributed version control system
+    \item The three states a file can reside in inside Git
+    \item The basic Git workflow
+    \item Setting up your identity
+    \item Other settings
+    \item Getting help
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exercises}
+  \begin{enumerate}
+    \item Find the version of Git you are using with \texttt{git --version}.
+    \item Set your global \texttt{user.name}.
+    \item Set your global \texttt{user.email}.
+    \item If you want, change your default \texttt{core.editor}.
+    \item Set your default branch name to \texttt{main} (Git version $\geqslant$ 2.28).
+    \item Examine all your settings. 
+    \item Examine the concise help output for the \texttt{git config} command.
+  \end{enumerate}
 \end{frame}
 
 \end{document}
