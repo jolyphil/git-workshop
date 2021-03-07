@@ -156,36 +156,36 @@
 			\item Windows: right-click + Git Bash here
 			\item MacOS: you need to activate this functionality
     \end{itemize}
-    \item You can otherwise navigate with the \texttt{cd} command.
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Initializing a git repository (2)}
+\begin{frame}[fragile]{Initializing a git repository (2)}
 You can otherwise navigate with the \texttt{cd} command.
-	\begin{exampleblock}{For Linux}
-		\begin{semiverbatim}
-			\item \$ cd /home/user/my\_project
-		\end{semiverbatim}
-  \end{exampleblock}
-  \begin{exampleblock}{For MacOS}
-  	\begin{semiverbatim}
-  		\item \$ cd /Users/user/my\_project
-  	\end{semiverbatim}
-  \end{exampleblock}
-  \begin{exampleblock}{For Windows}
-  	\begin{semiverbatim}
-  		\item \$ cd C:/Users/user/my\_project
-  	\end{semiverbatim}
-  \end{exampleblock}
+
+\vspace{0.5cm}
+
+For Linux:
+\begin{lstlisting}
+$ cd /home/user/my_project
+\end{lstlisting}
+
+For MacOS:
+\begin{lstlisting}
+$ cd /Users/user/my_project
+\end{lstlisting}
+
+For Windows:
+\begin{lstlisting}
+$ cd C:/Users/user/my_project
+\end{lstlisting}
+
 \end{frame}
 
-\begin{frame}{Initializing a git repository (3)}
+\begin{frame}[fragile]{Initializing a git repository (3)}
 	Now type:
-	\begin{exampleblock}{}
-		\begin{semiverbatim}
-			\item \$ git init
-		\end{semiverbatim}
-	\end{exampleblock}
+\begin{lstlisting}
+$ git init
+\end{lstlisting}
 	\begin{itemize}
 		\item Creates a subdirectory named \texttt{.git}
 		\item Might be hidden depending on your configuration
@@ -193,46 +193,43 @@ You can otherwise navigate with the \texttt{cd} command.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Staging and committing a file}
-	\begin{exampleblock}{Staging a file (taking a snapshot)}
-		\begin{semiverbatim}
-			\item \$ git add myfile.txt
-		\end{semiverbatim}
-	\end{exampleblock}
-	\begin{exampleblock}{Committing a file (saving that snapshot)}
-		\begin{semiverbatim}
-			\item \$ git commit myfile.txt -m "Record this change in project"
-		\end{semiverbatim}
-	\end{exampleblock}
+\begin{frame}[fragile]{Staging and committing a file}
+Staging a file (taking a snapshot)
+\begin{lstlisting}
+$ git add myfile.txt
+\end{lstlisting}
+Committing a file (saving that snapshot)
+\begin{lstlisting}
+$ git commit myfile.txt -m "Record this change in project"
+\end{lstlisting}
 \end{frame}
 
-\begin{frame}{Cloning an existing repository}
-	\begin{itemize}
-		\item Creates a copy of a repository stored on a remote server. 
-		\item Imports the entire version history
-	\end{itemize}
-	\begin{exampleblock}{https protocol}
-		\begin{semiverbatim}
-			\item \$ git clone https://github.com/jolyphil/git-workshop
-		\end{semiverbatim}
-	\end{exampleblock}
-	\begin{itemize}
-		\item If you have set up an SSH connection on the server (here: GitHub), you can also clone the repo like this: 
-	\end{itemize}
-	\begin{exampleblock}{SSH protocol}
-		\begin{semiverbatim}
-			\item \$ git clone git@github.com:jolyphil/git-workshop
-		\end{semiverbatim}
-	\end{exampleblock}
-	\begin{itemize}
-		\item Advantage: you don't have to re-enter your username and password. 
-	\end{itemize}
+\begin{frame}[fragile]{Cloning an existing repository}
+
+Cloning creates a copy of a repository stored on a remote server and imports the entire version history of the project. 
+
+\vspace{0.5cm}
+
+https protocol:
+	
+\begin{lstlisting}
+$ git clone https://github.com/jolyphil/git-workshop
+\end{lstlisting}
+
+If you have set up an SSH connection on the server (here: GitHub), you can also clone the repo like this: 
+
+\begin{lstlisting}
+$ git clone git@github.com:jolyphil/git-workshop
+\end{lstlisting}
+
+Advantage: you don't have to re-enter your username and password. 
+
 \end{frame}
 
 \begin{frame}{Tip: \texttt{git clone} is usually easier than \texttt{git init}}
 	\begin{itemize}
 		\item \texttt{git clone} automatically sets up the connection between your local and remote repository. 
-		\item You can create a repository containing only a README file on GitHub
+		\item You would usually proceed as follows:
 		\begin{enumerate}
 			\item Create a new repository containing only a README file on GitHub
 			\item Clone this repository on your local machine
@@ -256,32 +253,33 @@ You can otherwise navigate with the \texttt{cd} command.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Checking the status of your files (1)}
-	\begin{exampleblock}{}
-		\begin{semiverbatim}
-			\item \$ git status
-		\end{semiverbatim}
-	\end{exampleblock}
-	\begin{exampleblock}{}
-		\begin{semiverbatim}
-			\item On branch master
-			\item Your branch is up-to-date with 'origin/master'.
-			\item nothing to commit, working tree clean
-		\end{semiverbatim}
-	\end{exampleblock}
+
+\begin{frame}[fragile]{Checking the status of your files (1)}
+
+\begin{lstlisting}
+$ git status
+On branch main
+Your branch is up-to-date with 'origin/main'.
+nothing to commit, working tree clean
+\end{lstlisting}
+
 \end{frame}
 
-\begin{frame}{Checking the status of your files (2)}
-	\begin{exampleblock}{What happens when you create or copy a file in your repo}
-		\begin{semiverbatim}
-			\item On branch main
-			\item Your branch is up-to-date with 'origin/main'.
-			\item Untracked files:
-			\item (use "git add <file>..." to include in what will be committed)
-			\item README
-			\item nothing added to commit but untracked files present (use "git add" to track)
-		\end{semiverbatim}
-	\end{exampleblock}
+
+\begin{frame}[fragile]{Checking the status of your files (2)}
+
+What happens when you create or copy a file in your repo
+
+\begin{lstlisting}
+$ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+    README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}{Untracked files}
@@ -294,18 +292,16 @@ You can otherwise navigate with the \texttt{cd} command.
 \begin{frame}[fragile]{Tracking a new file}
 Add a new file
 \begin{lstlisting}
-$ git add README    
+$ git add README.md    
 \end{lstlisting}
 Check the status 
 \begin{lstlisting}
 $ git status
-
-On branch master
-Your branch is up-to-date with 'origin/master'.
+On branch main
 Changes to be committed:
   (use "git restore --staged <file>..." to unstage)
 
-    new file:   README
+    new file:   README.md
 \end{lstlisting}
 \end{frame}
 
@@ -313,12 +309,11 @@ Changes to be committed:
 What happens when you modify a tracked file (here: \texttt{CONTRIBUTING.md})
 \begin{lstlisting}
 $ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
+On branch main
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-    new file:   README
+    new file:   README.md
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -333,12 +328,11 @@ After adding the modified file to the staging area
 \begin{lstlisting}
 $ git add CONTRIBUTING.md
 $ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
+On branch main
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-    new file:   README
+    new file:   README.md
     modified:   CONTRIBUTING.md
 \end{lstlisting}
 \end{frame}
@@ -347,12 +341,11 @@ Changes to be committed:
 What happens if you modify the file again before committing
 \begin{lstlisting}
 $ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
+On branch main
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-    new file:   README
+    new file:   README.md
     modified:   CONTRIBUTING.md
 
 Changes not staged for commit:
@@ -368,12 +361,11 @@ Adding the file again to the staging area.
 \begin{lstlisting}
 $ git add CONTRIBUTING.md
 $ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
+On branch main
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-    new file:   README
+    new file:   README.md
     modified:   CONTRIBUTING.md
 \end{lstlisting}
 \end{frame}
@@ -402,12 +394,11 @@ doc/*.txt
 Let's say you have a modified file named \texttt{CONTRIBUTING.md}
 \begin{lstlisting}
 $ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
+On branch main
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-    modified:   README
+    modified:   README.md
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -437,9 +428,9 @@ $ git commit
 It's easier to you use the \texttt{-m} option and do everything in a single command.
 \begin{lstlisting}
 $ git commit -m "Story 182: fix benchmarks for speed"
-[master 463dc4f] Story 182: fix benchmarks for speed
+[main 463dc4f] Story 182: fix benchmarks for speed
  2 files changed, 2 insertions(+)
- create mode 100644 README
+ create mode 100644 README.md
 \end{lstlisting}
 Good commit messages are important
 \begin{itemize}
@@ -559,6 +550,107 @@ git restore README.md
 	\end{enumerate}
 \end{frame}
 
+\begin{frame}[fragile]{Working with remotes (1)}
+	When you clone a repository, Git will set up a connection between your \textbf{local repository} and the version of this repository on the \textbf{server}. 
+\begin{lstlisting}
+$ git clone git@github.com:jolyphil/git-workshop
+$ cd git-workshop
+\end{lstlisting}
+	The repository on the server is called a \textbf{remote} repository. By default, the remote repository associated with your local project is called \texttt{origin}.
+	
+\vspace{0.5cm}	
+	
+	You can see the remotes associated with your project by running the following command:
+	
+\begin{lstlisting}
+$ git remote
+origin
+\end{lstlisting}
+	
+\end{frame}
+
+\begin{frame}[fragile]{Working with remotes (2)}
+If you check the status of your repo, you will see how your current commit history diverges from your remote. 
+\begin{lstlisting}
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+\end{lstlisting}
+
+\alert{Important:} This is an \textbf{offline} command. \texttt{git status} does not compare your version history with the version on the server. It compares your local version to the last version of the server \textbf{on your machine}. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Fetching from your remote}
+To update the version history of the server on your machine, you proceed as follows: 
+\begin{lstlisting}
+$ git fetch <remote>
+\end{lstlisting}
+\texttt{git fetch} does not change in any way your working directory. It simply updates the version history of the server on your computer. 
+
+\vspace{0.5cm}
+
+You can compare your local repo with the image of your remote with  the following command:
+
+\begin{lstlisting}
+$ git diff origin/main
+\end{lstlisting}
+
+Here, \texttt{origin} is the remote and \texttt{main} is the main branch on the remote. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Pushing to your remote}
+To synchronize the remote with your local commit history, you proceed as follows: 
+\begin{lstlisting}
+$ git push origin main
+\end{lstlisting}
+
+This is only possible if you have \textbf{write access} to the server and \textbf{nobody has pushed} since the last time you fetched. 
+
+\vspace{0.5cm}
+
+If git rejects your push, do \texttt{git fetch}, examine the changes with \texttt{git diff}, and,  if there are no conflict, \texttt{push} again. 
+
+\vspace{0.5cm}
+
+We will cover merging problems in the next part of the workshop. 
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Renaming and removing remotes}
+To rename remotes, proceed as follows: 
+\begin{lstlisting}
+$ git remote rename pb paul
+$ git remote
+origin
+paul
+\end{lstlisting}
+To remove a remote, proceed as follows: 
+\begin{lstlisting}
+$ git remote remove paul
+$ git remote
+origin
+\end{lstlisting} 
+
+\end{frame}
+
+\begin{frame}{Exercise 3}
+(Through all the next steps: don't forget to use \texttt{git status} frequently.)
+\begin{enumerate}
+	\item Create a new repo on GitHub with a \texttt{README.md} file and clone it on your computer (\textit{demonstration}).
+	\item Modify \texttt{README.md} locally (add a line of text).
+	\item Stage your changes using \texttt{git add}.
+	\item Commit your changes using \texttt{git commit -m}.
+	\item Try using \texttt{git fetch}.
+	\item Compare your version history using \texttt{git diff}.
+	\item Push your changes using \texttt{git push}.
+\end{enumerate}
+
+\end{frame}
+	
 \end{document}
 
 

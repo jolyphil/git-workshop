@@ -8,6 +8,6 @@
 *.log
 *.out
 *.snm
+*.vrb
 *eps-converted-to.pdf
 
-part2_git_basics/part2.pdf
