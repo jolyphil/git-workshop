@@ -1,0 +1,657 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PREAMBLE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[handout]{beamer}
+%\documentclass{beamer}
+
+%------------------------------------------------------------------
+% Presentation Settings
+%------------------------------------------------------------------
+
+\mode<presentation>
+{
+	\usetheme{Boadilla}      % or Boadilla, Singapore, ...
+	\usecolortheme{default} % or albatross, beaver, crane, ...
+	\usefonttheme{default}  % or serif, structurebold, ...
+	\setbeamertemplate{navigation symbols}{}
+	\setbeamertemplate{caption}[numbered]
+	\setbeamertemplate{itemize items}[circle]
+	\setbeamertemplate{itemize subitem}[triangle]
+	\setbeamertemplate{enumerate items}[default]
+	\setbeamerfont{caption}{size=\tiny}
+	%\setbeamercolor{alerted text}{fg=blue}
+}
+
+%------------------------------------------------------------------
+% Packages
+%------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage[natbibapa]{apacite}
+\usepackage{appendixnumberbeamer}
+\usepackage[english]{babel}
+\usepackage{comment}
+\usepackage{hyperref}
+\usepackage[utf8x]{inputenc}
+\usepackage{pdfpages}
+\usepackage{subcaption}
+\usepackage{verbatim}
+
+\usepackage{listings} % Code blocks
+\usepackage{color}
+
+\definecolor{ltgreen}{RGB}{230, 242, 230}
+
+\lstset{frame=tb,
+  language=bash,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  backgroundcolor=\color{ltgreen}
+}
+
+
+%------------------------------------------------------------------
+% Set up
+%------------------------------------------------------------------
+
+% Add section titles
+
+\AtBeginSection[]{
+	\begin{frame}
+  	\vfill
+  	\centering
+  	\begin{beamercolorbox}[sep=8pt,center,shadow=false,rounded=false]{title}
+    	\usebeamerfont{title}\insertsectionhead\par%
+  	\end{beamercolorbox}
+  	\vfill
+  \end{frame}
+}
+
+% Reduce references font size
+
+\renewcommand*{\bibfont}{\scriptsize}
+
+%------------------------------------------------------------------
+% Title page settings
+%------------------------------------------------------------------
+
+\title[Git/GitHub Workshop: Part 2]{Workshop: Introduction to Git and GitHub}
+
+\subtitle{Part 2: Git Basics}
+
+\author[P. Joly]{Philippe Joly}
+\institute[FU-Berlin]{Freie Universität Berlin}
+
+\date{March 9, 2021}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%------------------------------------------------------------------
+% Title Page
+%------------------------------------------------------------------
+\begin{frame}
+\titlepage
+\end{frame}
+%
+
+%\begin{columns}
+%  \begin{column}{0.5\textwidth}
+%
+%    ...
+%
+%  \end{column}
+%  \begin{column}{0.5\textwidth}
+%    ...
+%  \end{column}
+%\end{columns}
+
+%%------------------------------------------------------------------
+
+\begin{frame}{Reference}
+	\begin{columns}
+	
+		\begin{column}{0.5\textwidth}
+			\begin{itemize}
+				\item This workshop draws extensively on Scott Chacon and Ben Straub (2021), \href{https://git-scm.com/book/en/v2}{\textit{ProGit}}, Version 2.1.295, 2021-02-26. 
+				\item Like the book, this workshop carries the CC BY-NC-SA 3.0 license.
+			\end{itemize}
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			\begin{figure}
+				\includegraphics[width=0.5\textwidth]{figures/progit_cover.png}
+				\caption{}
+			\end{figure}
+		\end{column}
+	
+	\end{columns}
+\end{frame}
+
+%%------------------------------------------------------------------
+
+\begin{frame}{Two ways of getting a Git repository}
+	\begin{enumerate}
+		\item Take a local directory that is currently not under version control and turn it into a Git repository
+		\item \texttt{clone} an existing Git repository from elsewhere.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Initializing a git repository (1)}
+	\begin{itemize}
+		\item Open a project folder
+		\item Open your terminal from inside the project folder
+		\begin{itemize}
+			\item Linux (Ubuntu): right-click + open terminal here
+			\item Windows: right-click + Git Bash here
+			\item MacOS: you need to activate this functionality
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Initializing a git repository (2)}
+You can otherwise navigate with the \texttt{cd} command.
+
+\vspace{0.5cm}
+
+For Linux:
+\begin{lstlisting}
+$ cd /home/user/my_project
+\end{lstlisting}
+
+For MacOS:
+\begin{lstlisting}
+$ cd /Users/user/my_project
+\end{lstlisting}
+
+For Windows:
+\begin{lstlisting}
+$ cd C:/Users/user/my_project
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Initializing a git repository (3)}
+	Now type:
+\begin{lstlisting}
+$ git init
+\end{lstlisting}
+	\begin{itemize}
+		\item Creates a subdirectory named \texttt{.git}
+		\item Might be hidden depending on your configuration
+		\item Your project folder is now a git repository!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Staging and committing a file}
+Staging a file (taking a snapshot)
+\begin{lstlisting}
+$ git add myfile.txt
+\end{lstlisting}
+Committing a file (saving that snapshot)
+\begin{lstlisting}
+$ git commit myfile.txt -m "Record this change in project"
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Cloning an existing repository}
+
+Cloning creates a copy of a repository stored on a remote server and imports the entire version history of the project. 
+
+\vspace{0.5cm}
+
+https protocol:
+	
+\begin{lstlisting}
+$ git clone https://github.com/jolyphil/git-workshop
+\end{lstlisting}
+
+If you have set up an SSH connection on the server (here: GitHub), you can also clone the repo like this: 
+
+\begin{lstlisting}
+$ git clone git@github.com:jolyphil/git-workshop
+\end{lstlisting}
+
+Advantage: you don't have to re-enter your username and password. 
+
+\end{frame}
+
+\begin{frame}{Tip: \texttt{git clone} is usually easier than \texttt{git init}}
+	\begin{itemize}
+		\item \texttt{git clone} automatically sets up the connection between your local and remote repository. 
+		\item You would usually proceed as follows:
+		\begin{enumerate}
+			\item Create a new repository containing only a README file on GitHub
+			\item Clone this repository on your local machine
+			\item Create or copy your project files into the cloned repository
+			\item Start committing
+		\end{enumerate}
+%		\item You can proceed like this:
+%		\begin{enumerate}
+%			\item Log into GitHub
+%			\item Click on the + sign
+%			\item Click on New repository
+%			\item Give a name to your repository
+%			\item Click on 'Add a README file' 
+%			\item Click on create repository
+%			\item In your GitHub repo, click on 'Code'
+%			\item Copy the SSH address
+%			\item \texttt{git clone} your repository using the SSH protocol
+%			\item Create or copy your local project files in the new folder
+%			\item Start committing
+%		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Checking the status of your files (1)}
+
+\begin{lstlisting}
+$ git status
+On branch main
+Your branch is up-to-date with 'origin/main'.
+nothing to commit, working tree clean
+\end{lstlisting}
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Checking the status of your files (2)}
+
+What happens when you create or copy a file in your repo
+
+\begin{lstlisting}
+$ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+    README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Untracked files}
+	\begin{figure}
+		\includegraphics[width=0.8\textwidth]{figures/git_4states.pdf}
+		\caption{New files have to be explicitly added to the version history.}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Tracking a new file}
+Add a new file
+\begin{lstlisting}
+$ git add README.md    
+\end{lstlisting}
+Check the status 
+\begin{lstlisting}
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+
+    new file:   README.md
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Staging modified files (1)}
+What happens when you modify a tracked file (here: \texttt{CONTRIBUTING.md})
+\begin{lstlisting}
+$ git status
+On branch main
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   README.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   CONTRIBUTING.md
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Staging modified files (2)}
+After adding the modified file to the staging area
+\begin{lstlisting}
+$ git add CONTRIBUTING.md
+$ git status
+On branch main
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   README.md
+    modified:   CONTRIBUTING.md
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Staging modified files (3)}
+What happens if you modify the file again before committing
+\begin{lstlisting}
+$ git status
+On branch main
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   README.md
+    modified:   CONTRIBUTING.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   CONTRIBUTING.md
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Staging modified files (4)}
+Adding the file again to the staging area.
+\begin{lstlisting}
+$ git add CONTRIBUTING.md
+$ git status
+On branch main
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    new file:   README.md
+    modified:   CONTRIBUTING.md
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Ignoring files}
+You can ignore certain files by creating a \texttt{.gitignore} file in your repo. 
+\begin{lstlisting}
+# ignore all .a files
+*.a
+
+# but do track lib.a, even though you're ignoring .a files above
+!lib.a
+
+# only ignore the TODO file in the current directory, not subdir/TODO
+/TODO
+
+# ignore all files in any directory named build
+build/
+
+# ignore doc/notes.txt, but not doc/server/arch.txt
+doc/*.txt
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Viewing Your Staged and Unstaged Changes (1)}
+Let's say you have a modified file named \texttt{CONTRIBUTING.md}
+\begin{lstlisting}
+$ git status
+On branch main
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    modified:   README.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   CONTRIBUTING.md
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Viewing Your Staged and Unstaged Changes (2)}
+Compares your working directory with the staged area (or with the last commit if you haven't staged anything since then.)
+\begin{lstlisting}
+$ git diff
+\end{lstlisting}
+If you want to compare what is currently staged with the last commit, you can proceed as follows:
+\begin{lstlisting}
+$ git diff --staged
+\end{lstlisting}
+This describes what will go into your next commit. 
+\end{frame}
+
+\begin{frame}[fragile]{Committing}
+This will open your default editor and let you write a commit message.
+\begin{lstlisting}
+$ git commit
+\end{lstlisting}
+It's easier to you use the \texttt{-m} option and do everything in a single command.
+\begin{lstlisting}
+$ git commit -m "Story 182: fix benchmarks for speed"
+[main 463dc4f] Story 182: fix benchmarks for speed
+ 2 files changed, 2 insertions(+)
+ create mode 100644 README.md
+\end{lstlisting}
+Good commit messages are important
+\begin{itemize}
+	\item Short, approx. 50 characters
+	\item Use the imperative (e.g., "Fix this problem")
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What happens when you commit (1)}
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth]{figures/fig09_commit.png}
+		\caption{A commit and its tree. \textit{Source}: Chacon \& Straub (2021), fig. 9.}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{What happens when you commit (2)}
+	\begin{figure}
+		\includegraphics[width=0.9\textwidth]{figures/fig10_commits_parents.png}
+		\caption{Commits and their parents. \textit{Source}: Chacon \& Straub (2021), fig. 10.}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Removing and moving files}
+Removing a file
+\begin{lstlisting}
+$ git rm PROJECTS.md
+\end{lstlisting}
+Moving (renaming) a file
+\begin{lstlisting}
+$ git mv file_from file_to
+\end{lstlisting}
+Note: these operations can also be done manually in your file browser and then staged using \texttt{git add}.
+\end{frame}
+
+\begin{frame}{Exercise 1}
+	\begin{enumerate}
+		\item Create a new folder.
+		\item Turn this folder into a Git repository using \texttt{git init}.
+		\item Create a file named \texttt{README.md} inside your repo.
+		\item Check the status of your git repository using \texttt{git status}.
+		\item Start tracking \texttt{README.md} using \texttt{git add}.
+		\item Check the status of your git repository again.
+		\item Modify \texttt{README.md} using a text editor (add a line of text for example).
+		\item Save \texttt{README.md}.
+		\item Check the status of your git repository again.
+		\item Examine the changes you have introduced using \texttt{git diff}.
+		\item Stage \texttt{README.md} using \texttt{git add} again. 
+		\item Commit your changes using \texttt{git commit -m}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Viewing the commit history}
+\begin{lstlisting}
+$ git log
+commit ca82a6dff817ec66f44342007202690a93763949
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Mon Mar 17 21:52:11 2008 -0700
+
+    Change version number
+
+commit 085bb3bcb608e1e8451d4b2432f8ecbe6306e7e7
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 16:40:33 2008 -0700
+
+    Remove unnecessary test
+    
+commit a11bef06a3f659402fe7563abf99ad00de2209e6
+Author: Scott Chacon <schacon@gee-mail.com>
+Date:   Sat Mar 15 10:31:28 2008 -0700
+
+    Initial commit
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Unstaging a staged file}
+Let's say you would like to unstage \texttt{README.md}
+\begin{lstlisting}
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   README.md
+\end{lstlisting}
+\texttt{git status} already tells you what you should do.
+\begin{lstlisting}
+git restore --staged README.md
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Unmodifying a modified file}
+Now \texttt{README.md} is unstaged but still modified in your working directory. 
+\begin{lstlisting}
+$git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   README.md
+\end{lstlisting}
+To revert to the last committed version of this file, follow the instructions in \texttt{git status}:
+\begin{lstlisting}
+git restore README.md
+\end{lstlisting}
+\alert{Danger zone}: \texttt{git restore} will wipe out all the uncommitted changes.
+\end{frame}
+
+\begin{frame}{Exercise 2}
+	\begin{enumerate}
+		\item Go into the repository you created in Exercise 1
+		\item Examine your commit history using \texttt{git log}.
+		\item Modify \texttt{README.md} (add a line of text).
+		\item Stage \texttt{README.md} using \texttt{git add}. 
+		\item Check the status of your repo using \texttt{git status}. 
+		\item Unstage \texttt{README.md} using \texttt{git restore --staged}.
+		\item Check the status of your repo using \texttt{git status} again. 
+		\item Unmodify \texttt{README.md} using \texttt{git restore}.
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Working with remotes (1)}
+	When you clone a repository, Git will set up a connection between your \textbf{local repository} and the version of this repository on the \textbf{server}. 
+\begin{lstlisting}
+$ git clone git@github.com:jolyphil/git-workshop
+$ cd git-workshop
+\end{lstlisting}
+	The repository on the server is called a \textbf{remote} repository. By default, the remote repository associated with your local project is called \texttt{origin}.
+	
+\vspace{0.5cm}	
+	
+	You can see the remotes associated with your project by running the following command:
+	
+\begin{lstlisting}
+$ git remote
+origin
+\end{lstlisting}
+	
+\end{frame}
+
+\begin{frame}[fragile]{Working with remotes (2)}
+If you check the status of your repo, you will see how your current commit history diverges from your remote. 
+\begin{lstlisting}
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+\end{lstlisting}
+
+\alert{Important:} This is an \textbf{offline} command. \texttt{git status} does not compare your version history with the version on the server. It compares your local version to the last version of the server \textbf{on your machine}. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Fetching from your remote}
+To update the version history of the server on your machine, you proceed as follows: 
+\begin{lstlisting}
+$ git fetch <remote>
+\end{lstlisting}
+\texttt{git fetch} does not change in any way your working directory. It simply updates the version history of the server on your computer. 
+
+\vspace{0.5cm}
+
+You can compare your local repo with the image of your remote with  the following command:
+
+\begin{lstlisting}
+$ git diff origin/main
+\end{lstlisting}
+
+Here, \texttt{origin} is the remote and \texttt{main} is the main branch on the remote. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Pushing to your remote}
+To synchronize the remote with your local commit history, you proceed as follows: 
+\begin{lstlisting}
+$ git push origin main
+\end{lstlisting}
+
+This is only possible if you have \textbf{write access} to the server and \textbf{nobody has pushed} since the last time you fetched. 
+
+\vspace{0.5cm}
+
+If git rejects your push, do \texttt{git fetch}, examine the changes with \texttt{git diff}, and,  if there are no conflict, \texttt{push} again. 
+
+\vspace{0.5cm}
+
+We will cover merging problems in the next part of the workshop. 
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Renaming and removing remotes}
+To rename remotes, proceed as follows: 
+\begin{lstlisting}
+$ git remote rename pb paul
+$ git remote
+origin
+paul
+\end{lstlisting}
+To remove a remote, proceed as follows: 
+\begin{lstlisting}
+$ git remote remove paul
+$ git remote
+origin
+\end{lstlisting} 
+
+\end{frame}
+
+\begin{frame}{Exercise 3}
+(Through all the next steps: don't forget to use \texttt{git status} frequently.)
+\begin{enumerate}
+	\item Create a new repo on GitHub with a \texttt{README.md} file and clone it on your computer (\textit{demonstration}).
+	\item Modify \texttt{README.md} locally (add a line of text).
+	\item Stage your changes using \texttt{git add}.
+	\item Commit your changes using \texttt{git commit -m}.
+	\item Try using \texttt{git fetch}.
+	\item Compare your version history using \texttt{git diff}.
+	\item Push your changes using \texttt{git push}.
+\end{enumerate}
+
+\end{frame}
+	
+\end{document}
+
+
+
