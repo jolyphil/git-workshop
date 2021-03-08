@@ -289,7 +289,256 @@ $ git branch -d iss53
 \end{lstlisting}
 \end{frame}
 
+\begin{frame}[fragile]{Basic Merge Conflicts (1)}
+
+If you have modified the same lines, of the same file, in both branches, you will have a merge conflict. 
+
+\begin{lstlisting}
+$ git merge iss53
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Basic Merge Conflicts (2)}
+
+Git handles this problem by inserting markers in your file to highlight the merge conflict.
+
+\begin{lstlisting}
+<<<<<<< HEAD:index.html
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+ please contact us at support@github.com
+</div>
+>>>>>>> iss53:index.html
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}{Basic Merge Conflicts (3)}
+
+Workflow:
+\begin{enumerate}
+	\item Open the problematic file
+	\item Look for the \texttt{<<<<<<<}, \texttt{=======}, and \texttt{>>>>>>>} markers
+	\item Revise this part of the file: select one of the two options or create a new one.
+	\item Delete the markers. 
+	\item Save your file.
+	\item Stage your changes using \texttt{git add}.
+	\item Finalize your merge using \texttt{git commit}.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Basic Merge Conflicts (3)}
+
+Workflow:
+\begin{enumerate}
+	\item Open the problematic file
+	\item Look for the \texttt{<<<<<<<}, \texttt{=======}, and \texttt{>>>>>>>} markers
+	\item Revise this part of the file: select one of the two options or create a new one.
+	\item Delete the markers. 
+	\item Save your file.
+	\item Stage your changes using \texttt{git add}.
+	\item Finalize your merge using \texttt{git commit}.
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}[fragile]{Inspect your merging history}
+
+\begin{lstlisting}
+$ git log --oneline --graph --all
+
+*   c545382 (HEAD -> main) Manage the merge conflict
+|\  
+| * a6afe91 Modify the same lines on newbranch
+* | e621ec9 Change something on main
+|/  
+* 764a766 Initial commit
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exercise 1 (a)}
+
+1. Open a new folder and initialize a new repo.
+\begin{lstlisting}
+$ git init 
+\end{lstlisting}
+2. Create a file named \texttt{list.md} with a list of \textbf{three places} you would like to visit after the pandemic.
+
+\vspace{0.3cm}
+
+3. Stage and commit your changes.
+
+\begin{lstlisting}
+$ git add list.md
+$ git commit list.md
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exercise 1 (b)}
+
+4. Create and switch to a new branch
+\begin{lstlisting}
+$ git checkout -b newbranch
+\end{lstlisting}
+
+5. Modify the third item on your list.
+
+\vspace{0.3cm}
+
+6. Stage and commit your changes.
+
+\begin{lstlisting}
+$ git add list.md
+$ git commit list.md
+\end{lstlisting}
+
+7. Switch back to the main branch
+\begin{lstlisting}
+$ git checkout main
+\end{lstlisting}
+
+8. Repeat steps 5 and 6 but modify the third item differently this time. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Exercise 1 (c)}
+
+
+
+\vspace{0.3cm}
+
+9. Try merging
+
+\begin{lstlisting}
+$ git merge newbranch
+\end{lstlisting}
+
+10. Open \texttt{list.md} and manage the merge conflict
+
+\vspace{0.3cm}
+
+11. Stage and finalize your merge
+
+\begin{lstlisting}
+$ git add list.md
+$ git commit list.md
+\end{lstlisting}
+
+12. Inspect your merging history
+
+\begin{lstlisting}
+$ git log --oneline --graph --all
+\end{lstlisting}
+
+13. Delete \texttt{newbranch}
+
+\begin{lstlisting}
+$ git branch -d newbranch
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}{Git Feature Branch Workflow}
+\begin{figure}
+	\includegraphics[width=0.9\textwidth]{figures/feature_branch.pdf}
+	\caption{Feature Branch Workflow. \textit{License}: CC BY 2.5 AU. \textit{Source}: Atlassian. \href{https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow}{https://www.atlassian.com}}
+\end{figure}
+\begin{itemize}
+	\item All feature development takes place in a dedicated branch.
+	\item The main branch should not contain broken code.
+	\item Merges are the focal point of discussion in a team.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Gitflow for more complex projects}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figures/gitflow.pdf}
+	\caption{Gitflow. \textit{License}: CC BY 2.5 AU. \textit{Source}: Atlassian. \href{https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow}{https://www.atlassian.com}}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Refresher: working with remotes (1)}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figures/fig30_clone.png}
+	\caption{Server and local repositories after cloning. \textit{Source}: Atlassian. Chacon \& Straub, fig. 30.}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Refresher: working with remotes (2)}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figures/fig31_local_forward.png}
+	\caption{Local and remote work can diverge. \textit{Source}: Atlassian. Chacon \& Straub, fig. 31.}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Refresher: working with remotes (3)}
+\begin{figure}
+	\includegraphics[width=0.8\textwidth]{figures/fig32_diverge.png}
+	\caption{\texttt{git fetch} updates your remote-tracking branches. \textit{Source}: Atlassian. Chacon \& Straub, fig. 32.}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Refresher: working with remotes (4)}
+Update the version history of the server on your computer:
+\begin{lstlisting}
+$ git fetch origin
+\end{lstlisting}
+Examine the differences between your local branch and the branch on the server:
+\begin{lstlisting}
+$ git diff origin/main
+\end{lstlisting}
+If needed, merge:
+\begin{lstlisting}
+$ git merge origin/main
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}{\texttt{git pull}}
+\begin{itemize}
+	\item \texttt{git pull} is a \textbf{shortcut} for \texttt{git fetch} and \texttt{git merge}.
+	\item This command is \alert{dangerous} because it can overwrite your working directory without giving you the chance to examine the changes. 
+	\item It's usually better to run \texttt{git fetch}, examine the changes with \texttt{git diff}, and then run \texttt{git merge}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Exercise 2}
+
+1. Log into GitHub and open the demo repository you created in Exercise 3 of Part 2 of the workshop. 
+
+\vspace{0.3cm}
+
+2. Modify \texttt{README.md} and commit your changes \textbf{online}. 
+
+\vspace{0.3cm}
+
+3. In your \textbf{local} repo, update the version history of the server.
+
+\begin{lstlisting}
+$ git fetch origin
+\end{lstlisting}
+
+4. Examine the differences between your local version history and the version history on the server. 
+
+\begin{lstlisting}
+$ git status
+$ git diff origin/main
+\end{lstlisting}
+
+5. Merge the version history of the server into your local main branch.
+
+\begin{lstlisting}
+$ git merge origin/main
+\end{lstlisting}
+\end{frame}
+
 \end{document}
-
-
 
