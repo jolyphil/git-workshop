@@ -140,6 +140,8 @@
 
 %%------------------------------------------------------------------
 
+\section{Getting a Git repository}
+
 \begin{frame}{Two ways of getting a Git repository}
 	\begin{enumerate}
 		\item Take a local directory that is currently not under version control and turn it into a Git repository
@@ -253,6 +255,7 @@ Advantage: you don't have to re-enter your username and password.
 	\end{itemize}
 \end{frame}
 
+\section{Checking the status of your files}
 
 \begin{frame}[fragile]{Checking the status of your files (1)}
 
@@ -288,6 +291,8 @@ nothing added to commit but untracked files present (use "git add" to track)
 		\caption{New files have to be explicitly added to the version history.}
 	\end{figure}
 \end{frame}
+
+\section{Tracking and staging files}
 
 \begin{frame}[fragile]{Tracking a new file}
 Add a new file
@@ -370,7 +375,9 @@ Changes to be committed:
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Ignoring files}
+\section{Ignoring files}
+
+\begin{frame}[fragile]{\texttt{.gitignore}}
 You can ignore certain files by creating a \texttt{.gitignore} file in your repo. 
 \begin{lstlisting}
 # ignore all .a files
@@ -389,6 +396,8 @@ build/
 doc/*.txt
 \end{lstlisting}
 \end{frame}
+
+\section{Viewing Your Staged and Unstaged Changes}
 
 \begin{frame}[fragile]{Viewing Your Staged and Unstaged Changes (1)}
 Let's say you have a modified file named \texttt{CONTRIBUTING.md}
@@ -419,6 +428,8 @@ $ git diff --staged
 \end{lstlisting}
 This describes what will go into your next commit. 
 \end{frame}
+
+\section{Committing}
 
 \begin{frame}[fragile]{Committing}
 This will open your default editor and let you write a commit message.
@@ -453,6 +464,8 @@ Good commit messages are important
 	\end{figure}
 \end{frame}
 
+\section{Removing and moving files}
+
 \begin{frame}[fragile]{Removing and moving files}
 Removing a file
 \begin{lstlisting}
@@ -464,6 +477,8 @@ $ git mv file_from file_to
 \end{lstlisting}
 Note: these operations can also be done manually in your file browser and then staged using \texttt{git add}.
 \end{frame}
+
+\section{Exercise}
 
 \begin{frame}{Exercise 1}
 	\begin{enumerate}
@@ -481,6 +496,8 @@ Note: these operations can also be done manually in your file browser and then s
 		\item Commit your changes using \texttt{git commit -m}
 	\end{enumerate}
 \end{frame}
+
+\section{Inspecting the commit history and undoing things}
 
 \begin{frame}[fragile]{Viewing the commit history}
 \begin{lstlisting}
@@ -537,6 +554,8 @@ git restore README.md
 \alert{Danger zone}: \texttt{git restore} will wipe out all the uncommitted changes.
 \end{frame}
 
+\section{Exercise}
+
 \begin{frame}{Exercise 2}
 	\begin{enumerate}
 		\item Go into the repository you created in Exercise 1
@@ -549,6 +568,8 @@ git restore README.md
 		\item Unmodify \texttt{README.md} using \texttt{git restore}.
 	\end{enumerate}
 \end{frame}
+
+\section{Remotes}
 
 \begin{frame}[fragile]{Working with remotes (1)}
 	When you clone a repository, Git will set up a connection between your \textbf{local repository} and the version of this repository on the \textbf{server}. 
@@ -636,6 +657,8 @@ origin
 \end{lstlisting} 
 
 \end{frame}
+
+\section{Exercise}
 
 \begin{frame}{Exercise 3}
 (Through all the next steps: don't forget to use \texttt{git status} frequently.)
