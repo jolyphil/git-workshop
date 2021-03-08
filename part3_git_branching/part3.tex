@@ -149,6 +149,8 @@
 
 %%------------------------------------------------------------------
 
+\section{How Git branching works}
+
 \begin{frame}{Git branching}
 	\begin{itemize}
 		\item A divergence from the main line of development
@@ -263,6 +265,8 @@ $ git branch
 \end{lstlisting}
 \end{frame}
 
+\section{Merging}
+
 \begin{frame}{Basic merging (1)}
 \begin{figure}
 	\includegraphics[width=0.9\textwidth]{figures/fig24_pre_merge.png}
@@ -288,6 +292,8 @@ After merging, you can safely delete the branch.
 $ git branch -d iss53
 \end{lstlisting}
 \end{frame}
+
+\section{Merge Conflicts}
 
 \begin{frame}[fragile]{Basic Merge Conflicts (1)}
 
@@ -333,21 +339,6 @@ Workflow:
 
 \end{frame}
 
-\begin{frame}{Basic Merge Conflicts (3)}
-
-Workflow:
-\begin{enumerate}
-	\item Open the problematic file
-	\item Look for the \texttt{<<<<<<<}, \texttt{=======}, and \texttt{>>>>>>>} markers
-	\item Revise this part of the file: select one of the two options or create a new one.
-	\item Delete the markers. 
-	\item Save your file.
-	\item Stage your changes using \texttt{git add}.
-	\item Finalize your merge using \texttt{git commit}.
-\end{enumerate}
-
-\end{frame}
-
 \begin{frame}[fragile]{Inspect your merging history}
 
 \begin{lstlisting}
@@ -362,6 +353,9 @@ $ git log --oneline --graph --all
 \end{lstlisting}
 
 \end{frame}
+
+
+\section{Exercise}
 
 \begin{frame}[fragile]{Exercise 1 (a)}
 
@@ -446,6 +440,8 @@ $ git branch -d newbranch
 
 \end{frame}
 
+\section{Workflows}
+
 \begin{frame}{Git Feature Branch Workflow}
 \begin{figure}
 	\includegraphics[width=0.9\textwidth]{figures/feature_branch.pdf}
@@ -464,6 +460,8 @@ $ git branch -d newbranch
 	\caption{Gitflow. \textit{License}: CC BY 2.5 AU. \textit{Source}: Atlassian. \href{https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow}{https://www.atlassian.com}}
 \end{figure}
 \end{frame}
+
+\section{Refresher: working with remotes}
 
 \begin{frame}{Refresher: working with remotes (1)}
 \begin{figure}
@@ -510,6 +508,7 @@ $ git merge origin/main
 \end{itemize}
 \end{frame}
 
+\section{Exercise}
 
 \begin{frame}[fragile]{Exercise 2}
 
@@ -541,6 +540,7 @@ $ git merge origin/main
 \end{lstlisting}
 \end{frame}
 
+\section{Remote branches}
 
 \begin{frame}[fragile]{Working with remote branches (1)}{Scenario 1: Create a new branch and share it on a remote}
 
@@ -631,6 +631,9 @@ $ git push origin --delete mybranch
 \end{lstlisting}
 
 \end{frame}
+
+
+\section{Exercise}
 
 \begin{frame}[fragile]{Exercise 3}
 
