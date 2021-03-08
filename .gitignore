@@ -1,6 +1,7 @@
 # LaTeX Files
 *.aux
 *.blg
+*.dvi
 *.nav  
 *.synctex.gz
 *.toc
