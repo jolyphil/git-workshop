@@ -205,7 +205,7 @@ $ git branch
 \end{figure}
 \end{frame}
 
-\begin{frame}[fragile]{The \texttt{testing} (the new branch) moves forward}
+\begin{frame}[fragile]{The new branch moves forward}
 
 \begin{lstlisting}
 $ git add myfile.txt
@@ -510,6 +510,7 @@ $ git merge origin/main
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}[fragile]{Exercise 2}
 
 1. Log into GitHub and open the demo repository you created in Exercise 3 of Part 2 of the workshop. 
@@ -538,6 +539,129 @@ $ git diff origin/main
 \begin{lstlisting}
 $ git merge origin/main
 \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{Working with remote branches (1)}{Scenario 1: Create a new branch and share it on a remote}
+
+Create and switch to a new branch:
+
+\begin{lstlisting}
+$ git checkout -b newbranch
+\end{lstlisting}
+
+Push this branch to the remote: 
+
+\begin{lstlisting}
+$ git push origin newbranch
+\end{lstlisting}
+
+Start tracking the remote branch:
+
+\begin{lstlisting}
+$ git branch -u origin/newbranch
+\end{lstlisting}
+
+In other words, when you \texttt{git push} and \texttt{git fetch}, Git will automatically compare your local \textbf{tracking branch} with the \textbf{remote upstream} branch. 
+
+\end{frame}
+
+\begin{frame}[fragile]{Working with remote branches (2)}{Inspect your tracking and upstream branches}
+
+\begin{lstlisting}
+$ git branch -vv
+  main       d2abadb [origin/main] Update README.md
+* newbranch d2abadb [origin/newbranch] Update README.md
+\end{lstlisting}
+
+\begin{itemize}
+	\item The local \texttt{main} branch is tracking the upstream \texttt{main} branch on the remote \texttt{origin}.
+	\item The local \texttt{newbranch} is tracking the upstream \texttt{newbranch} on the remote \texttt{origin}.
+\end{itemize} 
+
+\end{frame}
+
+
+\begin{frame}[fragile]{Working with remote branches (3)}{Scenario 2: Import a branch created by someone else on the remote}
+
+Fetch the remote repository. Git informs you about the new branch: 
+
+\begin{lstlisting}
+$ git fetch
+From github.com:jolyphil/demorepo
+ * [new branch]      newbranch        -> origin/newbranch
+
+\end{lstlisting}
+
+\texttt{newbranch} is still not a local branch:
+
+\begin{lstlisting}
+$ git branch
+* main
+\end{lstlisting}
+
+Create a local copy and switch to it: 
+
+\begin{lstlisting}
+$ git checkout --track origin/newbranch
+Branch 'newbranch' set up to track remote branch 'newbranch' from 'origin'.
+Switched to a new branch 'newbranch'
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Deleting a remote branch}
+
+Switch back to \texttt{main}:
+
+\begin{lstlisting}
+$ git checkout main
+\end{lstlisting}
+
+Delete the local branch:
+
+\begin{lstlisting}
+$ git branch -d mybranch
+\end{lstlisting}
+
+Delete the remote branch:
+
+\begin{lstlisting}
+$ git push origin --delete mybranch
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Exercise 3}
+
+1. Open the repo used in the previous exercise. 
+
+\vspace{0.3cm}
+
+2. Create and switch to a new branch named 'newfeature'.
+
+\begin{lstlisting}
+$ git checkout -b newfeature
+\end{lstlisting}
+
+3. Push this branch to the remote.
+
+\begin{lstlisting}
+$ git push origin newfeature
+\end{lstlisting}
+
+4. Start tracking the remote branch.
+
+\begin{lstlisting}
+$ git branch -u origin/newfeature
+\end{lstlisting}
+
+5. Inspect your tracking and upstream branches.
+
+\begin{lstlisting}
+$ git branch -vv
+\end{lstlisting}
+
 \end{frame}
 
 \end{document}
